@@ -1,5 +1,7 @@
 Simple Tic-tac-toe implementation in HTML5/CANVAS.
 
+Playing around with CANVAS. Obviously this only works in a decent browser.
+
 Currently there's only the board and a random fill of the tiles.
 
 Do a git clone if you want to take a look. Demo site might follow later if I

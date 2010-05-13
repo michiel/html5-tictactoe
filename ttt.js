@@ -71,11 +71,15 @@ Tile = function(ctxt, x, y, size, color) {
   this.markO = function() {
     var half = size / 2;
     mark = Shape.Circle(ctxt, (x+half), (y+half), (half - (half/4)) , 4, Color.red); 
-    markValue = 'Y';
+    markValue = 'O';
   }
 
   this.marked = function() {
     return markValue != null;
+  }
+
+  this.markedWith = function() {
+    return markValue;
   }
 
   var shape = Shape.Square(ctxt, props.x, props.y, props.size, props.color)
@@ -118,6 +122,64 @@ Game = function(ctxt, app) {
     mark = (mark == 'X') ? 'O' : 'X';
   }
 
+  var checkWin = function(arr) {
+    var winner = false;
+    for (var positions, i=0; positions=arr[i]; i++) {
+      var owner, mark, x, y = null;
+      for (var j=0; position = positions[j]; j++) {
+        x = position[0];
+        y = position[1];
+        mark = board[x][y].markedWith();
+        if (owner == null) {
+          owner = mark; // 0
+        } else {
+          if (owner == mark) {
+            // We're good, continue
+          } else {
+            // Not a winning combo, move on
+            break;
+          }
+        }
+      }
+      if (owner == mark) {
+        return owner;
+      }
+    }
+    return false;
+  }
+
+  var winner = null;
+  winner = checkWin([
+
+    //
+    // Check horizontal values
+    //
+
+
+    [[0,0], [0,1], [0,2]],
+    [[1,0], [1,1], [1,2]],
+    [[2,0], [2,1], [2,2]],
+
+    //
+    // Check vertical values
+    //
+
+    [[0,0], [1,0], [2,0]],
+    [[0,1], [1,1], [2,1]],
+    [[0,2], [1,2], [2,2]],
+
+    //
+    // Check diagonal values
+    //
+
+    [[0,0], [1,1], [2,2]],
+    [[0,2], [1,1], [2,0]]
+
+    ]);
+
+  if (winner) {
+    alert("Winner is " + winner);
+  }
 }
 
 $(function () {
