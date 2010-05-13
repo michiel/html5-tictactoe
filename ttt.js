@@ -15,11 +15,28 @@ App = function() {
   }
 }
 
+Shape = {
+  Circle : function(ctxt, x, y, radius, color) {
+    ctxt.fillStyle = color;
+    ctxt.beginPath();
+    // Arguments: x, y, radius, start angle, end angle, anticlockwise
+    context.arc(x, y, radius, 0, 360, false);
+    context.stroke();
+    ctxt.closePath();
+  },
+
+  Square : function(ctxt, x, y, size, color) {
+    ctxt.fillStyle = color;
+    ctxt.fillRect(x, y, x+size, y+size);
+  }
+
+}
+
 Tile = function(ctxt, x, y, size, color) {
   var props = {
     x     : x,
     y     : y,
-    size  : size || 100,
+    size  : size  || 100,
     color : color || '#000'
   }
 
@@ -29,8 +46,7 @@ Tile = function(ctxt, x, y, size, color) {
   this.markO = function() {
   }
 
-  ctxt.fillStyle = props.color;
-  ctxt.fillRect(x, y, x+size, y+size);
+  var shape = Shape.Square(ctxt, props.x, props.y, props.size, props.color)
 
 }
 
