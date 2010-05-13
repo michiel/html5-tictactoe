@@ -123,12 +123,11 @@ Game = function(ctxt, app) {
   }
 
   var checkWin = function(arr) {
-    var winner = false;
     for (var positions, i=0; positions=arr[i]; i++) {
       var owner, mark, x, y = null;
       for (var j=0; position = positions[j]; j++) {
-        x = position[0];
-        y = position[1];
+        y = position[0];
+        x = position[1];
         mark = board[x][y].markedWith();
         if (owner == null) {
           owner = mark; // 0
@@ -148,8 +147,7 @@ Game = function(ctxt, app) {
     return false;
   }
 
-  var winner = null;
-  winner = checkWin([
+  var winner = checkWin([
 
     //
     // Check horizontal values
@@ -173,7 +171,7 @@ Game = function(ctxt, app) {
     //
 
     [[0,0], [1,1], [2,2]],
-    [[0,2], [1,1], [2,0]]
+    [[2,0], [1,1], [0,2]]
 
     ]);
 
