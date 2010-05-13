@@ -16,12 +16,13 @@ App = function() {
 }
 
 Shape = {
-  Circle : function(ctxt, x, y, radius, color) {
-    ctxt.fillStyle = color;
+  Circle : function(ctxt, x, y, radius, linewidth, color) {
+    ctxt.strokeStyle = color;
+    ctxt.lineWidth = linewidth || 1;
     ctxt.beginPath();
     // Arguments: x, y, radius, start angle, end angle, anticlockwise
-    context.arc(x, y, radius, 0, 360, false);
-    context.stroke();
+    ctxt.arc(x, y, radius, 0, 360, false);
+    ctxt.stroke();
     ctxt.closePath();
   },
 
