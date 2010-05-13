@@ -60,15 +60,22 @@ Tile = function(ctxt, x, y, size, color) {
     size  : size  || 100,
     color : color || Color.white
   }
-  var mark = null;
+  var mark      = null;
+  var markValue = null;
 
   this.markX = function() {
     mark = Shape.Cross(ctxt, x, y, (x+size), (y+size), 4, Color.red); 
+    markValue = 'X';
   }
 
   this.markO = function() {
     var half = size / 2;
     mark = Shape.Circle(ctxt, (x+half), (y+half), (half - (half/4)) , 4, Color.red); 
+    markValue = 'Y';
+  }
+
+  this.marked = function() {
+    return markValue != null;
   }
 
   var shape = Shape.Square(ctxt, props.x, props.y, props.size, props.color)
@@ -78,15 +85,39 @@ Tile = function(ctxt, x, y, size, color) {
 Game = function(ctxt, app) {
   var size = tilesize;
   var board = [];
+
   var getColor = function(x, y) {
     return ((x + y) % 2) ? Color.black : Color.white;
   }
+
   for (var x=0; x<3;x++){
     board[x] = [];
     for (var y=0; y<3; y++) {
       board[x][y] = new Tile(ctxt, x*size, y*size, size, getColor(x, y))
     }
   }
+
+  var freeTiles = function() {
+    var tiles = [];
+    for (var x=0; x<3;x++){
+      for (var y=0; y<3; y++) {
+        if (!board[x][y].marked()) {
+          tiles.push([x,y]);
+        }
+      }
+    }
+    return tiles;
+  }
+
+  var mark = 'X';
+  var tiles = freeTiles();
+  while (tiles.length != 0) {
+    var randomTile = tiles[(Math.floor(Math.random() * tiles.length))];
+    board[randomTile[0]][randomTile[1]]['mark' + mark]();
+    tiles = freeTiles();
+    mark = (mark == 'X') ? 'O' : 'X';
+  }
+
 }
 
 $(function () {
