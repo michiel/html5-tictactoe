@@ -1,0 +1,11 @@
+TODO list
+
+ - Fix buggy checkWin and/or coords assignment
+ - Drop the alert, use canvas text
+ - Write canvas text handlers to drop alert
+ - jQuery plugin-ify the code and drop hard-coded canvas lookup (have multiple games on one page)
+ - Remove magic numbers such as line width
+ - Evaluate possible winners after each move instead of after the board is filled
+ - Add reset methods for Game and Tile
+ - Make it interactive
+
