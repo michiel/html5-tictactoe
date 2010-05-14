@@ -92,7 +92,7 @@ Tile = function(ctxt, x, y, size, color) {
 
 }
 
-Game = function(ctxt, app) {
+Tictactoe = function(ctxt, app) {
   var size = tilesize;
   var board = [];
 
@@ -207,7 +207,7 @@ $(function () {
     app.canvasHeight = canvas.height();
 
     var ctxt = canvas[0].getContext("2d");
-    var game = new Game(ctxt, app);
+    var game = new Tictactoe(ctxt, app);
 
   });
 
