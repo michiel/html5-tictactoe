@@ -1,4 +1,8 @@
 
+//
+// XXX : magic number 
+//
+
 tilesize = 100;
 
 App = function() {
@@ -50,7 +54,9 @@ Shape = {
 Color = {
   black : '#000',
   white : '#fff',
-  red   : '#f00'
+  red   : '#f00',
+  green : '#0f0',
+  blue  : '#00f'
 }
 
 Tile = function(ctxt, x, y, size, color) {
