@@ -119,6 +119,20 @@ Game = function(ctxt, app) {
     return tiles;
   }
 
+  var eachtile = function(func) {
+    var results = [];
+    for (var x=0; x<3;x++){
+      for (var y=0; y<3; y++) {
+        results.push([x, y, func(board[x][y])]);
+      }
+    }
+    return results;
+  }
+
+  this.eachTile = function(func) {
+    return eachtile(func);
+  }
+
   var mark = 'X';
   var tiles = freeTiles();
   while (tiles.length != 0) {
